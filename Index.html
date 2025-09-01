@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Dual-Helmet Safety System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Chosen Palette: Cool Slate -->
+    <!-- Application Structure Plan: The application is designed as a single-page, top-down narrative. It starts with a broad 'Overview' to grab attention, then delves into the system's logic with an interactive 'How It Works' flowchart. This is followed by 'Key Features' presented as clickable cards for easy digestion. The 'System Components' are shown in an interactive block diagram to clarify the hardware relationships. Finally, 'Applications & Impact' uses a tabbed layout and a chart to showcase real-world relevance. This thematic, interactive structure was chosen over a linear format to guide the user from the "what" to the "how" and "why," making a complex technical document engaging and understandable for various audiences, from engineers to potential investors. -->
+    <!-- Visualization & Content Choices: 
+        - Report Info: System Logic Flow -> Goal: Explain operational sequence -> Viz/Presentation Method: Interactive HTML/CSS flowchart -> Interaction: Hover to highlight step descriptions -> Justification: Breaks down a complex process into a guided, interactive journey, enhancing comprehension. Method: HTML/CSS/JS.
+        - Report Info: System Hardware (Rider Helmet, Pillion Helmet, Vehicle Unit) -> Goal: Detail the physical components and their connections -> Viz/Presentation Method: Interactive block diagram -> Interaction: Click on a component to view its internal parts -> Justification: Provides a clear architectural overview with an optional drill-down for technical details without cluttering the main view. Method: HTML/CSS/JS.
+        - Report Info: Key functionalities (Ignition Lock, Alcohol/Accident Detection) -> Goal: Showcase the invention's unique selling points -> Viz/Presentation Method: Grid of feature cards -> Interaction: Click to reveal detailed descriptions -> Justification: A modern, scannable format that highlights core benefits effectively. Method: HTML/CSS/JS.
+        - Report Info: Potential benefits for stakeholders -> Goal: Quantify and visualize the system's value -> Viz/Presentation Method: Bar Chart (Potential Safety Impact) -> Interaction: Hover for tooltips with specific data -> Justification: A chart offers a more potent and immediate understanding of the system's positive impact than text alone. Library: Chart.js.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style src="style.css"></style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="antialiased">
+
+    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-xl md:text-2xl font-bold text-[var(--primary-color)]">Dual-Helmet Safety System</h1>
+            <div class="hidden md:flex space-x-6">
+                <a href="#overview" class="text-[var(--secondary-color)] hover:text-[var(--accent-color)] transition">Overview</a>
+                <a href="#how-it-works" class="text-[var(--secondary-color)] hover:text-[var(--accent-color)] transition">How It Works</a>
+                <a href="#features" class="text-[var(--secondary-color)] hover:text-[var(--accent-color)] transition">Features</a>
+                <a href="#components" class="text-[var(--secondary-color)] hover:text-[var(--accent-color)] transition">Components</a>
+                <a href="#applications" class="text-[var(--secondary-color)] hover:text-[var(--accent-color)] transition">Applications</a>
+                <a href="#ask-expert" class="text-[var(--secondary-color)] hover:text-[var(--accent-color)] transition">Ask the Expert</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="overview" class="py-20 md:py-32 bg-white">
+            <div class="container mx-auto px-6 text-center">
+                <div class="flex justify-center items-center gap-4 mb-4">
+                    <h2 class="text-3xl md:text-5xl font-bold text-[var(--primary-color)]">Revolutionizing Two-Wheeler Safety</h2>
+                </div>
+                <p id="overview-text" class="text-lg md:text-xl text-[var(--secondary-color)] max-w-3xl mx-auto mb-8">An IoT-based invention that ensures both rider and pillion wear helmets, detects alcohol, and automatically alerts emergency services in case of an accident.</p>
+                <div class="flex justify-center">
+                    <a href="#how-it-works" class="bg-[var(--accent-color)] text-white font-bold py-3 px-8 rounded-full hover:bg-blue-600 transition text-lg">Discover How It Works</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="how-it-works" class="py-16 md:py-24">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12 flex flex-col items-center">
+                    <div class="flex items-center gap-4 mb-4">
+                        <h3 class="text-3xl md:text-4xl font-bold">System Logic Flow</h3>
+                    </div>
+                    <p id="how-it-works-text" class="text-lg text-[var(--secondary-color)] max-w-2xl mx-auto">This interactive diagram shows the step-by-step process the system follows to ensure safety, from the initial checks to starting the vehicle. Hover over each step to see a detailed explanation.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+                    <div id="flowchart-info" class="md:col-span-1 p-6 bg-white rounded-lg shadow-lg sticky top-24">
+                        <h4 class="font-bold text-xl mb-2">Step Details</h4>
+                        <p id="flowchart-text" class="text-[var(--secondary-color)]">Hover over a step in the flowchart to learn more about it.</p>
+                    </div>
+                    <div class="md:col-span-2 space-y-2">
+                        <div class="flowchart-node" data-info="The process begins. The rider prepares to start the two-wheeler.">Start</div>
+                        <div class="flowchart-arrow">&#11107;</div>
+                        <div class="flowchart-node" data-info="The system checks if both the rider and the pillion passenger have securely fastened their helmets using strap sensors. Both signals must be received.">Check Rider & Pillion Helmet Status</div>
+                        <div class="flowchart-arrow">&#11107;</div>
+                        <div class="flowchart-node" data-info="The rider's helmet is equipped with an MQ-3 sensor to analyze the rider's breath for alcohol content.">Alcohol Sensor Check</div>
+                        <div class="flowchart-arrow">&#11107;</div>
+                        <div class="flowchart-node" data-info="A logic module on the vehicle verifies three conditions: Rider helmet ON, Pillion helmet ON, and NO alcohol detected. All three must be true to proceed.">Logic Gate Verification (AND)</div>
+                        <div class="flowchart-arrow">&#11107;</div>
+                        <div class="flowchart-node" data-info="If all safety checks pass, the system unlocks the vehicle's ignition, allowing the rider to start the engine. If any check fails, the ignition remains locked.">Unlock Ignition</div>
+                         <div class="flowchart-arrow">&#11107;</div>
+                        <div class="flowchart-node" data-info="While riding, the MPU6050 sensor constantly monitors for sudden impacts or tilts indicative of an accident. The MQ-2 sensor monitors for smoke.">Continuous Monitoring (Accident/Smoke)</div>
+                         <div class="flowchart-arrow">&#11107;</div>
+                         <div class="flowchart-node" data-info="If an accident is detected, the system automatically uses the GSM module to send an emergency alert with the vehicle's location (from the GPS module) to pre-defined contacts.">Emergency Alert System Triggered</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12 flex flex-col items-center">
+                    <div class="flex items-center gap-4 mb-4">
+                        <h3 class="text-3xl md:text-4xl font-bold">Key Innovative Features</h3>
+                    </div>
+                    <p id="features-text" class="text-lg text-[var(--secondary-color)] max-w-2xl mx-auto">This system integrates multiple safety technologies into a single, cohesive unit. Click on any feature card to flip it and learn more about its specific function and technology.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="feature-card h-64 perspective-1000">
+                        <div class="feature-card-inner">
+                            <div class="feature-card-front">
+                                <span class="text-5xl mb-4">🔐</span>
+                                <h4 class="text-xl font-semibold">Dual-Helmet Ignition Lock</h4>
+                            </div>
+                            <div class="feature-card-back">
+                                <p>The core novelty. The vehicle's ignition will not start unless both the rider's and pillion's helmets are securely worn, confirmed by strap sensors and RF communication.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feature-card h-64 perspective-1000">
+                        <div class="feature-card-inner">
+                            <div class="feature-card-front">
+                                <span class="text-5xl mb-4">🍺</span>
+                                <h4 class="text-xl font-semibold">Integrated Alcohol Detection</h4>
+                            </div>
+                            <div class="feature-card-back">
+                                <p>An MQ-3 sensor embedded in the rider's helmet analyzes breath for alcohol. If the level exceeds the legal limit, the ignition remains locked, preventing drunk driving.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feature-card h-64 perspective-1000">
+                        <div class="feature-card-inner">
+                            <div class="feature-card-front">
+                                <span class="text-5xl mb-4">💥</span>
+                                <h4 class="text-xl font-semibold">Automatic Accident Detection</h4>
+                            </div>
+                            <div class="feature-card-back">
+                                <p>Using an MPU6050 accelerometer and gyroscope, the system detects sudden impacts or extreme tilts, automatically identifying a potential crash.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feature-card h-64 perspective-1000">
+                        <div class="feature-card-inner">
+                            <div class="feature-card-front">
+                                <span class="text-5xl mb-4">🔥</span>
+                                <h4 class="text-xl font-semibold">Smoke Detection</h4>
+                            </div>
+                            <div class="feature-card-back">
+                                <p>An MQ-2 sensor is included to detect smoke, which could indicate a fire after an accident, providing another layer of critical safety information.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feature-card h-64 perspective-1000">
+                        <div class="feature-card-inner">
+                            <div class="feature-card-front">
+                                <span class="text-5xl mb-4">🛰️</span>
+                                <h4 class="text-xl font-semibold">IoT Emergency Notification</h4>
+                            </div>
+                            <div class="feature-card-back">
+                                <p>Upon accident detection, the onboard GSM and GPS modules send an automated SMS alert with precise coordinates to emergency contacts, ensuring rapid response.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feature-card h-64 perspective-1000">
+                        <div class="feature-card-inner">
+                            <div class="feature-card-front">
+                                <span class="text-5xl mb-4">📡</span>
+                                <h4 class="text-xl font-semibold">Wireless System Integration</h4>
+                            </div>
+                            <div class="feature-card-back">
+                                <p>The helmets communicate wirelessly with the vehicle unit via RF transmitters and receivers, creating a seamless and reliable connection without cumbersome wires.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="components" class="py-16 md:py-24">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12 flex flex-col items-center">
+                    <div class="flex items-center gap-4 mb-4">
+                         <h3 class="text-3xl md:text-4xl font-bold">System Components Architecture</h3>
+                    </div>
+                     <p id="components-text" class="text-lg text-[var(--secondary-color)] max-w-2xl mx-auto">The system consists of three primary hardware units that work together. Click on any of the components in the diagram below to see a detailed list of its internal technologies.</p>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 items-center text-center">
+                    <div class="component-card lg:col-span-2 p-6 bg-white rounded-lg shadow-lg" data-component="rider">
+                        <h4 class="text-2xl font-semibold">Rider Helmet</h4>
+                        <p class="text-[var(--secondary-color)] mt-2">The primary control unit with advanced sensors and communication modules.</p>
+                    </div>
+                    <div class="text-4xl text-[var(--secondary-color)] hidden lg:block">+</div>
+                    <div class="component-card p-6 bg-white rounded-lg shadow-lg" data-component="pillion">
+                        <h4 class="text-2xl font-semibold">Pillion Helmet</h4>
+                        <p class="text-[var(--secondary-color)] mt-2">Ensures pillion rider compliance.</p>
+                    </div>
+                     <div class="text-4xl text-[var(--secondary-color)] hidden lg:block">+</div>
+                     <div class="component-card lg:col-span-2 p-6 bg-white rounded-lg shadow-lg" data-component="vehicle">
+                        <h4 class="text-2xl font-semibold">Vehicle Unit</h4>
+                        <p class="text-[var(--secondary-color)] mt-2">Receives signals and controls the ignition lock.</p>
+                    </div>
+                </div>
+                <div id="component-details" class="mt-12 bg-white p-8 rounded-lg shadow-xl max-w-4xl mx-auto hidden">
+                    <h4 id="component-title" class="text-2xl font-bold mb-4"></h4>
+                    <ul id="component-list" class="list-disc list-inside space-y-2 text-lg text-[var(--secondary-color)]">
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="applications" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12 flex flex-col items-center">
+                    <div class="flex items-center gap-4 mb-4">
+                        <h3 class="text-3xl md:text-4xl font-bold">Applications & Societal Impact</h3>
+                    </div>
+                    <p id="applications-text" class="text-lg text-[var(--secondary-color)] max-w-2xl mx-auto">This technology has far-reaching applications beyond individual safety, capable of influencing urban planning, law enforcement, and the insurance industry. Select a category to explore its potential.</p>
+                </div>
+                <div class="max-w-4xl mx-auto">
+                    <div class="flex flex-wrap justify-center border-b border-gray-200 mb-8">
+                        <button class="tab-button active py-3 px-6 text-lg font-semibold" data-tab="cities">Smart Cities</button>
+                        <button class="tab-button py-3 px-6 text-lg font-semibold" data-tab="insurance">Insurance</button>
+                        <button class="tab-button py-3 px-6 text-lg font-semibold" data-tab="enforcement">Enforcement</button>
+                        <button class="tab-button py-3 px-6 text-lg font-semibold" data-tab="manufacturing">Manufacturing</button>
+                    </div>
+                    <div id="tab-content" class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                        <div class="app-content">
+                            <div id="cities-content" class="tab-pane active">
+                                <h4 class="text-2xl font-semibold mb-3">Smart City Integration</h4>
+                                <p class="text-[var(--secondary-color)]">Anonymized data on helmet compliance and accident locations can be fed into smart traffic systems. This helps city planners identify high-risk areas, optimize emergency service deployment, and create targeted road safety campaigns, making cities safer for everyone.</p>
+                            </div>
+                            <div id="insurance-content" class="tab-pane hidden">
+                                <h4 class="text-2xl font-semibold mb-3">Incentives from Insurance</h4>
+                                <p class="text-[var(--secondary-color)]">Insurance companies can offer lower premiums to riders using this system. Verifiable data on helmet use and safe driving habits (like no alcohol detection incidents) allows for more accurate risk assessment and can lead to a reduction in claims.</p>
+                            </div>
+                            <div id="enforcement-content" class="tab-pane hidden">
+                                <h4 class="text-2xl font-semibold mb-3">Effective Law Enforcement</h4>
+                                <p class="text-[var(--secondary-color)]">This system acts as a proactive tool for enforcing traffic laws. It prevents violations before they happen (e.g., drunk driving, riding without a helmet) and provides crucial data for accident analysis, helping law enforcement agencies reduce fatalities.</p>
+                            </div>
+                            <div id="manufacturing-content" class="tab-pane hidden">
+                                <h4 class="text-2xl font-semibold mb-3">Advanced Manufacturing</h4>
+                                <p class="text-[var(--secondary-color)]">Motorcycle and helmet manufacturers can integrate this technology as a standard safety feature. Offering a vehicle with a built-in, advanced safety system provides a significant competitive advantage in a safety-conscious market.</p>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                             <canvas id="impactChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="ask-expert" class="py-16 md:py-24">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h3 class="text-3xl md:text-4xl font-bold mb-4">✨ Ask the Expert ✨</h3>
+                    <p class="text-lg text-[var(--secondary-color)] max-w-2xl mx-auto">Have a question about the technology? Ask the Gemini-powered expert anything from technical details to potential future applications.</p>
+                </div>
+                <div class="max-w-3xl mx-auto">
+                    <textarea id="prompt-box" class="w-full h-32 p-4 mb-4 rounded-lg border-2 border-[var(--border-color)] focus:outline-none focus:border-[var(--accent-color)] text-[var(--text-color)]" placeholder="E.g., How does the alcohol sensor work? Or, What if the pillion's helmet battery dies?"></textarea>
+                    <div class="flex justify-center mb-8">
+                        <button id="ask-button" class="bg-[var(--accent-color)] text-white font-bold py-3 px-8 rounded-full hover:bg-blue-600 transition text-lg disabled:opacity-50">Ask Question</button>
+                    </div>
+                    <div id="response-box" class="bg-white p-6 rounded-lg shadow-lg min-h-[100px] border-l-4 border-[var(--accent-color)] hidden">
+                        <h4 class="font-semibold mb-2">Expert Response:</h4>
+                        <div id="response-text" class="text-[var(--secondary-color)]"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    
+    <footer class="bg-[var(--primary-color)] text-white py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p>Invention by: Saiyam Tuteja</p>
+            <p>Affiliation: Graphic Era Hill University</p>
+        </div>
+    </footer>
+
+    <script src="Script.js"></script>
+</body>
+</html>
