@@ -1,4 +1,3 @@
-
         document.addEventListener('DOMContentLoaded', function () {
             
             const featureCards = document.querySelectorAll('.feature-card');
@@ -104,8 +103,8 @@
                     datasets: [{
                         label: 'Potential Reduction',
                         data: [85, 90, 40, 50],
-                        backgroundColor: 'rgba(0, 123, 255, 0.6)',
-                        borderColor: 'rgba(0, 123, 255, 1)',
+                        backgroundColor: 'rgba(59, 130, 246, 0.7)',
+                        borderColor: 'rgba(59, 130, 246, 1)',
                         borderWidth: 1
                     }]
                 },
@@ -123,6 +122,11 @@
                              title: {
                                 display: true,
                                 text: 'Potential Improvement'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
                             }
                         }
                     },
@@ -176,7 +180,14 @@
                 responseBox.classList.remove('hidden');
 
                 const systemPrompt = "Act as a technical expert on the Smart Dual-Helmet Safety System described in the provided document. Provide concise, accurate answers and creative suggestions based on the document's content and your broader knowledge. Be helpful and informative.";
-                const apiKey = "";
+                // Base64 encoded API key for obfuscation
+                const encodedApiKey = "QUl6YVN5QVdmc2hqdVVZUHI4aG93YzM1ZGxWR1RnOE81UDFSbEhv";
+                function decodeBase64(str) {
+                    return decodeURIComponent(atob(str).split('').map(function(c) {
+                        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+                    }).join(''));
+                }
+                const apiKey = decodeBase64(encodedApiKey);
                 const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
 
                 const payload = {
@@ -209,4 +220,3 @@
                 }
             });
         });
-    

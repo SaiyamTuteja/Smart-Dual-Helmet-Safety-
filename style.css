@@ -1,11 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap");
 :root {
-  --bg-color: #f8f9fa;
-  --text-color: #212529;
-  --primary-color: #495057;
-  --secondary-color: #6c757d;
-  --accent-color: #007bff;
+  --bg-color: #f3f4f6;
+  --text-color: #374151;
+  --primary-color: #1f2937;
+  --secondary-color: #4b5563;
+  --accent-color: #3b82f6;
   --card-bg: #ffffff;
-  --border-color: #dee2e6;
+  --border-color: #e5e7eb;
 }
 body {
   background-color: var(--bg-color);
@@ -15,38 +16,37 @@ body {
 .flowchart-node {
   border: 2px solid var(--border-color);
   background-color: var(--card-bg);
-  padding: 1rem;
+  padding: 1.5rem;
   text-align: center;
-  border-radius: 0.5rem;
+  border-radius: 0.75rem;
   transition: all 0.3s ease;
-  position: relative;
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  font-weight: 600;
 }
 .flowchart-node:hover {
   border-color: var(--accent-color);
   transform: translateY(-5px);
-  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.1);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 .flowchart-arrow {
-  font-size: 2rem;
+  font-size: 2.5rem;
   color: var(--secondary-color);
-  margin: 0.5rem 0;
+  margin: 1rem 0;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .component-card,
 .feature-card,
-.tab-button,
-.app-card,
-.tts-button {
+.tab-button {
   transition: all 0.3s ease;
   cursor: pointer;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
 }
 .component-card:hover {
   transform: scale(1.05);
-  box-shadow: 0 8px 25px -5px rgb(0 0 0 / 0.1),
-    0 10px 10px -5px rgb(0 0 0 / 0.04);
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+    0 4px 6px -2px rgb(0 0 0 / 0.05);
 }
 .tab-button.active {
   background-color: var(--accent-color);
@@ -74,7 +74,7 @@ body {
   justify-content: center;
   align-items: center;
   padding: 1.5rem;
-  border-radius: 0.75rem;
+  border-radius: 1rem;
   border: 1px solid var(--border-color);
   background-color: var(--card-bg);
 }
@@ -94,106 +94,4 @@ body {
   .chart-container {
     height: 400px;
   }
-}
-
-/* System Components Architecture Section Styling */
-#components {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-}
-
-#components .container {
-  position: relative;
-}
-
-#components .container::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
-  z-index: 0;
-}
-
-#components .text-center {
-  position: relative;
-  z-index: 1;
-}
-
-#components h3 {
-  color: white;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-#components p {
-  color: rgba(255, 255, 255, 0.9);
-}
-
-#components .grid {
-  position: relative;
-  z-index: 1;
-}
-
-#components .component-card {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  border: none;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-  color: var(--text-color);
-}
-
-#components .component-card[data-component="rider"] {
-  background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
-  color: white;
-}
-
-#components .component-card[data-component="pillion"] {
-  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
-  color: white;
-}
-
-#components .component-card[data-component="vehicle"] {
-  background: linear-gradient(135deg, #d299c2 0%, #fef9d7 100%);
-  color: white;
-}
-
-#components .component-card:hover {
-  transform: translateY(-10px) scale(1.05);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-}
-
-#components .component-card h4 {
-  color: inherit;
-  font-weight: 700;
-}
-
-#components .component-card p {
-  color: rgba(255, 255, 255, 0.8);
-}
-
-#components .text-4xl {
-  color: #ffd700;
-  font-size: 3rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-  font-weight: bold;
-}
-
-#components #component-details {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  color: var(--text-color);
-  border: none;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-}
-
-#components #component-details h4 {
-  color: var(--primary-color);
-}
-
-#components #component-details ul li {
-  color: var(--secondary-color);
 }
